@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up |My Vehicle Service Center</title>
+
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/bootstrap-icons.svg" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            position: relative;
+            height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background:
+                linear-gradient(-45deg, #d41818, #ea7c15, #e1df49, #76c442, #e1df49, #ea7c15, #d41818);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            z-index: -2;
+            opacity: 0.6;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: url("{% static 'images/car-bg.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            z-index: -3;
+        }
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .text-shadow {
+            text-shadow: 20px 20px 20px rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="background-layer"></div>
+    <nav class="navbar fixed-top bg-info bg-opacity-50">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Vehicle Service Center</a>
+            <button class="navbar-toggler fs-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header w-auto">
+                    <h5 class="offcanvas-title">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav list-group list-group-flush justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item list-group-item"><a class="nav-link" href="#">Profile</a></li>
+                        <li class="nav-item list-group-item"><a class="nav-link active" aria-current="true" href="#">Dashboard</a></li>
+                        <li class="nav-item list-group-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Requests</a>
+                            <ul class="list-group-flush dropdown-menu ms-3 px-2">
+                                <li class="nav-item list-group-item"><a class="nav-link dropdown-item" href="#">Service Requests</a></li>
+                                <li class="nav-item list-group-item"><a class="nav-link dropdown-item" href="#">Vehicle Rental Requests</a></li>
+                                <li class="nav-item list-group-item"><a class="nav-link dropdown-item" href="#">Buy or Sell Vehicle Requests</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item list-group-item"><a class="nav-link" href="#">Payments</a></li>
+                        <li class="nav-item list-group-item"><a class="nav-link" href="#">Feedback</a></li>
+                        <li class="nav-item list-group-item"><a class="nav-link" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row align-items-center justify-content-center mt-5 mb-5">
+        <div class="card col-sm-4 mb-sm-0 mt-5 bg-primary bg-opacity-25 border border-primary rounded shadow m-2">
+            <div class="card-body">
+                <h4 class="card-title text-center text-white">New Rent Request</h4>
+                <h6 class="card-subtitle mb-4 text-center text-white">Fill and submit below form to make a new rent request</h6>
+                
+                <img src="{{ vehicle.vehicle_image.url }}" alt="Vehicle Image" class="img-fluid rounded mx-auto d-block">
+                <div class="row">
+                    <h6 class="col-6 col-md-6 text-center text-white">Model : {{vehicle.vehicle_model}}</h6>
+                    <h6 class="col-6 col-md-6 card-text text-center text-white">Mileage : {{vehicle.vehicle_milage}}</h6>
+                    <h6 class="col-6 col-md-6 card-text text-center text-white">Fuel Type : {{vehicle.vehicle_fuel_type}}</h6>
+                    <h6 class="col-6 col-md-6 card-text text-center text-white">Price/Hour : {{vehicle.vehicle_price_per_hour}}</h6>
+                </div>
+                <form method="post" class="form text-white" enctype="multipart/form-data" id="myForm" action="{% url 'new_request' %}">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label for="date" class="form-label h-50">From</label>
+                        <input type="date" class="form-control h-50" name="date" id="date" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="date" class="form-label h-50">Till</label>
+                        <input type="date" class="form-control h-50" name="date" id="date" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="Address" class="form-label h-50">Enter Your Address</label>
+                        <textarea class="form-control h-50" name="address" id="address" required></textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="phone" class="form-label h-50">Phone Number</label>
+                        <input type="text" pattern="[0-9]{10}" class="form-control h-50" name="phone" id="phone" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="proof" class="form-label h-50">Identity Proof</label>
+                        <input type="file" class="form-control h-50" name="proof" id="proof" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary align-items-center w-100 mt-3">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+    </script>  
+        
+    {% if err_message %}<script>alert('{{err_message}}');</script>{% endif %}
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb3f5c5e" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  
+</body>
+</html>

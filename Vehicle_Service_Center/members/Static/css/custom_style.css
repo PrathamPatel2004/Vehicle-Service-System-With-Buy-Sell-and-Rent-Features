@@ -1,0 +1,66 @@
+body {
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #ffffff;
+    color: #00000000;
+}
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background:
+        linear-gradient(-45deg, #d41818, #ea7c15, #e1df49, #76c442, #e1df49, #ea7c15, #d41818);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    z-index: -2;
+    opacity: 0.6;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url("/static/images/car-bg.png") no-repeat center center fixed;
+    background-size: contain;
+    background-size: cover;
+    z-index: -3;
+}
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.text-shadow {
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 1);
+}
+@media (max-width: 768px) {
+    h1, h2, p {
+        font-size: 1rem;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .table th, .table td {
+        font-size: 0.75rem;
+        padding: 0.3rem;
+    }
+    body::before {
+        background-size: contain; /* Ensure image fits on smaller screens too */
+        background-position: center;
+    }
+}

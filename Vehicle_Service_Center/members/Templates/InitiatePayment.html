@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="{{ settings.RAZORPAY_KEY_ID }}" data-amount="{{ order_data.amount }}" data-currency="{{ order_data.currency }}" data-id="{{ order_id }}" data-handler="handlePayment" data-theme="light"></script>
+</head>
+<body>
+    {% if error %}
+        <h2>Error: {{ error }}</h2>
+    {% endif %}
+</body>
+</html>
